@@ -16,9 +16,6 @@ steps:
     docker push $(dockerId).azurecr.io/$(imageName)
   displayName: Build and Pushing the Image
 
-- bash: find resource-manifests -type f -name "*.yaml" -print0 | 
-      xargs -0 sed -i -e "s/{{TAG}}/$(build.buildId)/" \   
-      -e "s/{{DOCKER_USER}}/$(dockerId)/"
 
 
 - task: PublishBuildArtifacts@1
