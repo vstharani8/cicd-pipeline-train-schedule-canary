@@ -1,23 +1,17 @@
-# Jekyll site
-# Package your Jekyll site using the jekyll/builder Docker container image.
-# Add steps that build, test, save build artifacts, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu-16.04'
+
+variables:
+  dockerId: tharani  # Replace with your Docker ID for Docker Hub or the admin user name for the Azure Container Registry
+  imageName: train  # Replace with the name of the image you want to publish
 
 steps:
-- task: Docker@0
-  displayName: 'Run Jekyll'
-  inputs:
-    containerRegistryType: 'Container Registry'
-    action: 'Run an image'
-    imageName: 'jekyll/builder:latest'
-    volumes: |
-      $(build.sourcesDirectory):/srv/jekyll
-      $(build.binariesDirectory):/srv/jekyll/_site
-    containerCommand: 'jekyll build --future'
-    detached: false
+- script: |
+    docker build -t $(dockerId).azurecr.io/$(imageName) .
+    docker login -u $(dockerId) -p $(pswd) $(dockerId).azurecr.io
+    docker push $(dockerId).azurecr.io/$(imageName)
+  env:
+    pswd: Mkk7KdF6vSKS6=KWib=pdfqlOgeJ0Gb1        # Define dockerPassword in the Variables tab of this pipeline in Pipelines page of web interface
