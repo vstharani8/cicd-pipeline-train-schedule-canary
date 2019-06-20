@@ -5,8 +5,8 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  dockerId: tharani  # Replace with your Docker ID for Docker Hub or the admin user name for the Azure Container Registry
-  imageName: train  # Replace with the name of the image you want to publish
+  dockerId: tharani
+  imageName: train
 
 steps:
 - script: |
@@ -14,4 +14,4 @@ steps:
     docker login -u $(dockerId) -p $(pswd) $(dockerId).azurecr.io
     docker push $(dockerId).azurecr.io/$(imageName)
   env:
-    pswd: Mkk7KdF6vSKS6=KWib=pdfqlOgeJ0Gb1        # Define dockerPassword in the Variables tab of this pipeline in Pipelines page of web interface
+    pswd: Mkk7KdF6vSKS6=KWib=pdfqlOgeJ0Gb1
