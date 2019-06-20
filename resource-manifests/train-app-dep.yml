@@ -33,5 +33,7 @@ spec:
       containers:
       - name: train-schedule
         image: tharani.azurecr.io/train
+      imagePullSecrets:
+      - name: acr-auth
         ports:
         - containerPort: 8080
