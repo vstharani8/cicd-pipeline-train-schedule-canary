@@ -21,7 +21,7 @@ metadata:
   labels:
     app: train-schedule
 spec:
-  replicas: $rep
+  replicas: 2
   selector:
     matchLabels:
       app: train-schedule
