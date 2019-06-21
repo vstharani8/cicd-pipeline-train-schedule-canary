@@ -21,7 +21,7 @@ metadata:
   labels:
     app: train-schedule
 spec:
-  replicas: $CANARY_REPLICAS
+  replicas: 3
   selector:
     matchLabels:
       app: train-schedule
@@ -36,4 +36,4 @@ spec:
         ports:
         - containerPort: 8080
       imagePullSecrets:
-      - name: acr-auth
+      - name: $imagesecret
