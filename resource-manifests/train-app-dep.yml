@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: train-schedule
-        image: tharani.azurecr.io/train
+        image: tharani.azurecr.io/train::$(Build.BuildNumber)
         ports:
         - containerPort: 8080
       imagePullSecrets:
